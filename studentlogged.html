@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+    <title>Student Home</title>
+</head>
+
+<body onload="studentHome()">
+
+    <header>
+        <!-- <center><h1>My attendance history</h1></center> -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a class="navbar-brand text-light" href="#home" onclick="myHome()">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" href="#attendance" onclick="myAttendance()">My Attendance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#complaints" onclick="complaints()">Complaints</a>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"
+                    onclick="location.href='studentLoginForm.html'">
+                    Log Out
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Page     -->
+    <div id="home">
+        <div style="height: 600px" class="d-flex justify-content-center align-items-center">
+            <h1><b>Welcome <span id="welcomeName"></span></b></h1>
+        </div>
+    </div>
+
+    <!-- Attendance Table -->
+    <div id="attendance" style="display: none">
+        <div style="height: 600px" class="d-flex justify-content-center align-items-center">
+            <table class="container table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">SL No</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Attendance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>01 April 2023</td>
+                        <td>Present</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>02 April 2023</td>
+                        <td>Present</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>03 April 2023</td>
+                        <td class="text-danger"><b>Absent</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Complaint Form -->
+    <div id="complaints" style="display: none">
+        <div style="height: 600px" class="d-flex justify-content-center align-items-center">
+            <form id="form">
+                <div class="form-group">
+                    <label><b>Name(s) of the person(s) involved</b></label><br />
+                    <input id="field1" type="text" />
+                </div>
+                <div class="form-group">
+                    <label><b>What attempts have you made to resolve this complaint up to
+                            now? Please state who you contacted and what transpired</b></label>
+                    <textarea class="form-control" id="field2" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label><b>Any other information you want to provide?</b></label>
+                    <textarea class="form-control" id="field3" rows="3"></textarea>
+                </div>
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        //Attendance
+        function myAttendance() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("attendance").style.display = "block";
+            document.getElementById("complaints").style.display = "none";
+        }
+
+        //Home
+        function myHome() {
+            document.getElementById("home").style.display = "block";
+            document.getElementById("attendance").style.display = "none";
+            document.getElementById("complaints").style.display = "none";
+        }
+
+        //complaints
+        function complaints() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("attendance").style.display = "none";
+            document.getElementById("complaints").style.display = "block";
+        }
+
+        let form = document.getElementById("form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            validateComplaint();
+        });
+
+        function validateComplaint() {
+            let field1 = document.getElementById("field1").value;
+            let field2 = document.getElementById("field2").value;
+            let field3 = document.getElementById("field3").value;
+
+            if (field1 === "" || field2 === "" || field3 === "") {
+                alert("All Fields are Required");
+                return true;
+            } else {
+                Swal.fire(
+                    "Good job!",
+                    "Your Complaint has been Registered",
+                    "success"
+                );
+                document.getElementById("field1").value = "";
+                document.getElementById("field2").value = "";
+                document.getElementById("field3").value = "";
+            }
+        }
+
+        function studentHome() {
+            let email = localStorage.getItem('studentEmail');
+            document.getElementById('welcomeName').innerHTML = email;
+        }
+    </script>
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

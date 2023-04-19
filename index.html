@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- Section: Design Block -->
+    <section class="background-radial-gradient vh-100">
+        <div class=" px-4 py-5 px-md-5 text-center text-lg-start my-5">
+            <div class="row gx-lg-5 align-items-center mb-5">
+                <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                    <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                        Student Management <br />
+                        <span style="color: hsl(218, 81%, 75%)">System</span>
+                    </h1>
+                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                        Systems for managing student attendance save the students' attendance as digital data. This data
+                        is
+                        very safe since this programme is protected with numerous levels of protection. Users must input
+                        their given user ID and passwords in order to log into the software. This programme cannot be
+                        accessed by unauthorised people. Only the administration, teachers have this access, and they
+                        may
+                        use it whenever and whenever they choose. All they require is a smartphone, laptop, or PC with
+                        internet access.Every form of attendance report may be generated automatically with the aid of a
+                        student attendance management system.
+                    </p>
+                </div>
+
+                <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                    <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                    <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+                    <div class="card bg-glass">
+                        <div class="card-body px-4 py-5 px-md-5">
+                            <form>
+                                <h3 class="text-center">Teachers Login</h3>
+                                <br>
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <label class="align-self-center text-left" for="form3Example3">Email address</label>
+                                    <input type="text" id="email" class="form-control" name="email" required />
+                                </div>
+
+                                <!-- Date input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example4">Date</label>
+                                    <input type="date" id="date" class="form-control" name="date" required />
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example4">Password</label>
+                                    <input type="password" id="password" class="form-control" name="password"
+                                        required />
+                                </div>
+
+                                <!-- Submit button -->
+                                <a type="submit" class="btn btn-primary btn-block mb-4" href="adminLogged.html"
+                                    onclick="adminLogged()">
+                                    Sign In
+                                </a>
+
+                                <!-- Register buttons -->
+                                <div class="text-center">
+                                    <h6>For Students Login <span><a href="studentLoginForm.html">Click Here</a></span>
+                                    </h6>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section: Design Block -->
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        function adminLogged() {
+            let email = document.getElementById('email').value;
+            let date = document.getElementById('date').value;
+            localStorage.setItem('adminEmail', email)
+            localStorage.setItem('attendanceDate', date)
+        }
+    </script>
+
+</body>
+
+</html>
